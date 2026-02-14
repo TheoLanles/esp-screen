@@ -1,4 +1,4 @@
-    """ESP32 Modes Controller integration."""
+"""ESP32 Modes Controller integration."""
 import logging
 import os
 import aiohttp

@@ -1,11 +1,11 @@
 {
   "domain": "esp32_modes",
   "name": "ESP32 Modes Controller",
-  "documentation": "https://github.com/votre-repo",
-  "issue_tracker": "https://github.com/votre-repo/issues",
+  "documentation": "https://github.com/TheoLanles/esp-screen",
+  "issue_tracker": "https://github.com/TheoLanles/esp-screen/issues",
   "dependencies": [],
   "codeowners": [
-    "@vous"
+    "@TheoLanles"
   ],
   "requirements": [],
   "version": "1.0.1",

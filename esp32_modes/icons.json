@@ -1,0 +1,25 @@
+{
+    "entity": {
+        "select": {
+            "mode": {
+                "default": "mdi:card-multiple",
+                "state": {
+                    "Mode 1": "mdi:numeric-1-circle",
+                    "Mode 2": "mdi:numeric-2-circle",
+                    "Mode 3": "mdi:numeric-3-circle"
+                }
+            }
+        },
+        "button": {
+            "reboot": {
+                "default": "mdi:restart"
+            }
+        },
+        "sensor": {
+            "mode_sensor": {
+                "default": "mdi:information-outline"
+            }
+        }
+    },
+    "services": {}
+}

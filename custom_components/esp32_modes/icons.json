@@ -21,5 +21,9 @@
             }
         }
     },
-    "services": {}
+    "services": {
+        "update_firmware": {
+            "service": "mdi:cellphone-arrow-down"
+        }
+    }
 }

@@ -1,0 +1,17 @@
+update_firmware:
+  name: Update ESP32 Firmware
+  description: Upload a .bin firmware file to the ESP32 via OTA
+  fields:
+    firmware_path:
+      name: Firmware Path
+      description: Path to the .bin firmware file on the Home Assistant server
+      required: true
+      example: "/config/firmware/esp32_modes.bin"
+      selector:
+        text:
+    entry_id:
+      name: Entry ID
+      description: Config entry ID of the target ESP32 (optional if only one ESP32 is configured)
+      required: false
+      selector:
+        text:

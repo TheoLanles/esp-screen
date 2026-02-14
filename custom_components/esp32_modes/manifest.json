@@ -1,6 +1,6 @@
 {
   "domain": "esp32_modes",
-  "name": "ESP32 Modes Controller",
+  "name": "ESP32 NeoPixel Screen",
   "documentation": "https://github.com/TheoLanles/esp-screen",
   "issue_tracker": "https://github.com/TheoLanles/esp-screen/issues",
   "dependencies": [],
@@ -8,8 +8,8 @@
     "@TheoLanles"
   ],
   "requirements": [],
-  "version": "1.0.1",
+  "version": "2.0.0",
   "iot_class": "local_polling",
   "config_flow": true,
-  "icon": "mdi:monitor"
+  "icon": "mdi:led-strip-variant"
 }

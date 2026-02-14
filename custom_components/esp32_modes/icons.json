@@ -1,29 +1,34 @@
 {
     "entity": {
-        "select": {
-            "mode": {
-                "default": "mdi:card-multiple",
-                "state": {
-                    "Mode 1": "mdi:numeric-1-circle",
-                    "Mode 2": "mdi:numeric-2-circle",
-                    "Mode 3": "mdi:numeric-3-circle"
-                }
+        "light": {
+            "neopixel": {
+                "default": "mdi:led-strip-variant"
+            }
+        },
+        "text": {
+            "scrolling_text": {
+                "default": "mdi:format-text"
+            }
+        },
+        "number": {
+            "speed": {
+                "default": "mdi:speedometer"
+            }
+        },
+        "switch": {
+            "scroll": {
+                "default": "mdi:autorenew"
+            }
+        },
+        "sensor": {
+            "ram": {
+                "default": "mdi:memory"
             }
         },
         "button": {
             "reboot": {
                 "default": "mdi:restart"
             }
-        },
-        "sensor": {
-            "mode_sensor": {
-                "default": "mdi:information-outline"
-            }
-        }
-    },
-    "services": {
-        "update_firmware": {
-            "service": "mdi:cellphone-arrow-down"
         }
     }
 }

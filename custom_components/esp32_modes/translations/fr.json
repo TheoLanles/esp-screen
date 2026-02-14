@@ -2,7 +2,7 @@
   "config": {
     "step": {
       "user": {
-        "title": "Configuration ESP32 Modes",
+        "title": "Configuration ESP32 NeoPixel Screen",
         "description": "Entrez l'adresse IP de votre ESP32",
         "data": {
           "host": "Adresse IP"
@@ -10,7 +10,7 @@
       }
     },
     "error": {
-      "cannot_connect": "Impossible de se connecter à l'ESP32. Vérifiez l'adresse IP et que l'ESP32 est allumé.",
+      "cannot_connect": "Impossible de se connecter. Vérifiez l'IP et que l'ESP32 est allumé.",
       "unknown": "Erreur inconnue"
     },
     "abort": {

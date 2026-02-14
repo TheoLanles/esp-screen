@@ -1,45 +1,39 @@
-"""Sensor platform for ESP32 Modes."""
+"""Sensor platform for ESP32 NeoPixel Screen."""
 import logging
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 _LOGGER = logging.getLogger(__name__)
-
 DOMAIN = "esp32_modes"
+
 
 async def async_setup_entry(
     hass: HomeAssistant,
     entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up the sensor platform."""
     data = hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([ESP32ModeSensor(data["api"], entry.entry_id)])
+    async_add_entities([NeoPixelRAMSensor(data["api"], entry.entry_id)])
 
-class ESP32ModeSensor(SensorEntity):
-    """Representation of ESP32 Mode sensor."""
-    
+
+class NeoPixelRAMSensor(SensorEntity):
+    """Free heap RAM sensor."""
+
     _attr_has_entity_name = True
-    _attr_translation_key = "mode_sensor"
+    _attr_name = "RAM libre"
+    _attr_icon = "mdi:memory"
+    _attr_native_unit_of_measurement = "B"
+    _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_should_poll = True
-    
-    def __init__(self, api, entry_id):
-        """Initialize the sensor."""
+
+    def __init__(self, api, entry_id: str) -> None:
         self._api = api
-        self._attr_unique_id = f"{entry_id}_mode_sensor"
-        self._attr_name = "Mode Actuel"
-        self._state = None
-        self._attr_scan_interval = 5
-    
-    @property
-    def native_value(self):
-        """Return the state of the sensor."""
-        return self._state
-    
-    async def async_update(self):
-        """Fetch new state data."""
-        mode = await self._api.get_mode()
-        if mode:
-            self._state = f"Mode {mode}"
+        self._attr_unique_id = f"{entry_id}_ram"
+        self._attr_native_value = None
+
+    async def async_update(self) -> None:
+        status = await self._api.get_status()
+        if status:
+            self._attr_native_value = status.get("heap_free")

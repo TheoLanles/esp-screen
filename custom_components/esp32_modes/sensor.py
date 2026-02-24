@@ -15,7 +15,10 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     data = hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([NeoPixelRAMSensor(data["api"], entry.entry_id)])
+    async_add_entities([
+        NeoPixelRAMSensor(data["api"], entry.entry_id),
+        NeoPixelTempSensor(data["api"], entry.entry_id),
+    ])
 
 
 class NeoPixelRAMSensor(SensorEntity):
@@ -37,3 +40,25 @@ class NeoPixelRAMSensor(SensorEntity):
         status = await self._api.get_status()
         if status:
             self._attr_native_value = status.get("heap_free")
+
+
+class NeoPixelTempSensor(SensorEntity):
+    """Internal temperature sensor."""
+
+    _attr_has_entity_name = True
+    _attr_name = "Température Interne"
+    _attr_icon = "mdi:thermometer"
+    _attr_native_unit_of_measurement = "°C"
+    _attr_state_class = SensorStateClass.MEASUREMENT
+    _attr_device_class = "temperature"
+    _attr_should_poll = True
+
+    def __init__(self, api, entry_id: str) -> None:
+        self._api = api
+        self._attr_unique_id = f"{entry_id}_temp"
+        self._attr_native_value = None
+
+    async def async_update(self) -> None:
+        val = await self._api.get_temp()
+        if val is not None:
+            self._attr_native_value = val

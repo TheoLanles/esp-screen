@@ -79,8 +79,24 @@ class ESP32ScreenAPI:
     async def set_power(self, on: bool) -> bool:
         return await self._get(f"/api/power/set?value={'ON' if on else 'OFF'}")
 
+    async def set_matrix(self, w: int, h: int) -> bool:
+        return await self._get(f"/api/matrix/set?w={w}&h={h}")
+
     async def reboot(self) -> bool:
         return await self._get("/api/reboot")
+
+    async def get_temp(self) -> float | None:
+        """GET /api/temp → {"temp": ...}."""
+        try:
+            async with self.session.get(
+                f"{self.base_url}/api/temp", timeout=5
+            ) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    return data.get("temp")
+        except Exception as exc:
+            _LOGGER.error("Error getting temp: %s", exc)
+        return None
 
     # ── internal helper ──────────────────────────────────────
     async def _get(self, path: str) -> bool:
